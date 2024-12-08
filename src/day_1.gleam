@@ -23,7 +23,40 @@ pub fn part_1() {
   io.debug(output)
 }
 
-type Day1Input {
+pub fn part_2() {
+  let task_path = "./inputs/1.txt"
+  let assert Ok(input) = simplifile.read(from: task_path)
+  let splitstring =
+    input
+    |> string.split("\n")
+  let Day1Input(left_list, right_list) = split_line(splitstring, [], [])
+  let total_score = similarity(left_list, right_list, 0)
+  io.debug(total_score)
+}
+
+fn similarity(left_list: List(Int), right_list: List(Int), total: Int) -> Int {
+  case left_list {
+    [first, ..rest] -> {
+      let score = check_number(first, right_list, 0)
+      similarity(rest, right_list, total + score)
+    }
+    [] -> total
+  }
+}
+
+fn check_number(number: Int, list: List(Int), total: Int) -> Int {
+  case list {
+    [first, ..rest] -> {
+      case number == first {
+        True -> check_number(number, rest, total + number)
+        False -> check_number(number, rest, total)
+      }
+    }
+    [] -> total
+  }
+}
+
+pub type Day1Input {
   Day1Input(left_list: List(Int), right_list: List(Int))
 }
 
