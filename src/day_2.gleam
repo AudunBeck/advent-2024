@@ -1,5 +1,4 @@
 import gleam/int
-import gleam/io
 import gleam/list
 import gleam/string
 import simplifile
@@ -19,8 +18,7 @@ pub fn part_1() {
         }
       })
     })
-  let sum = levels(splitstring, 0, False)
-  io.debug(sum)
+  levels(splitstring, 0, False)
 }
 
 pub fn part_2() {
@@ -38,8 +36,7 @@ pub fn part_2() {
         }
       })
     })
-  let sum = levels(splitstring, 0, True)
-  io.debug(sum)
+  levels(splitstring, 0, True)
 }
 
 fn levels(list: List(List(Int)), sum: Int, safe: Bool) -> Int {

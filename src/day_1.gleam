@@ -1,5 +1,4 @@
 import gleam/int
-import gleam/io
 import gleam/list
 import gleam/string
 import simplifile
@@ -20,7 +19,7 @@ pub fn part_1() {
     |> list.fold(0, fn(accumulator, lists) {
       accumulator + int.absolute_value(lists.0 - lists.1)
     })
-  io.debug(output)
+  output
 }
 
 pub fn part_2() {
@@ -30,8 +29,7 @@ pub fn part_2() {
     input
     |> string.split("\n")
   let Day1Input(left_list, right_list) = split_line(splitstring, [], [])
-  let total_score = similarity(left_list, right_list, 0)
-  io.debug(total_score)
+  similarity(left_list, right_list, 0)
 }
 
 fn similarity(left_list: List(Int), right_list: List(Int), total: Int) -> Int {
@@ -58,16 +56,6 @@ fn check_number(number: Int, list: List(Int), total: Int) -> Int {
 
 pub type Day1Input {
   Day1Input(left_list: List(Int), right_list: List(Int))
-}
-
-fn print_list(list: List(Int)) {
-  case list {
-    [first, ..rest] -> {
-      io.debug(first)
-      print_list(rest)
-    }
-    [] -> io.println("finished")
-  }
 }
 
 fn split_line(

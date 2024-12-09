@@ -1,5 +1,4 @@
 import gleam/int
-import gleam/io
 import gleam/list
 import gleam/result
 import gleam/string
@@ -9,8 +8,7 @@ pub fn part_1() {
   let task_path = "./inputs/3.txt"
   let assert Ok(input) = simplifile.read(from: task_path)
   let mul_split = string.split(input, on: "mul(")
-  let sum = find_numbers(mul_split, 0)
-  io.debug(sum)
+  find_numbers(mul_split, 0)
 }
 
 pub fn part_2() {
@@ -29,8 +27,7 @@ pub fn part_2() {
     })
     |> string.join(with: "")
   let mul_split = string.split(do_dont_split, on: "mul(")
-  let sum = find_numbers_do(mul_split, 0)
-  io.debug(sum)
+  find_numbers_do(mul_split, 0)
 }
 
 fn find_numbers_do(list: List(String), sum: Int) -> Int {
