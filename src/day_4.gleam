@@ -21,6 +21,27 @@ pub fn part_1() {
   }
 }
 
+pub fn part_2() {
+  let task_path = "./inputs/4.txt"
+  let assert Ok(input) = simplifile.read(from: task_path)
+  let input = parse(input)
+  use count, #(row, col), chr <- dict.fold(input, 0)
+  use <- bool.guard(when: chr != "A", return: count)
+  case
+    dict.get(input, #(row + 1, col + 1)),
+    dict.get(input, #(row + 1, col - 1)),
+    dict.get(input, #(row - 1, col - 1)),
+    dict.get(input, #(row - 1, col + 1))
+  {
+    Ok("M"), Ok("M"), Ok("S"), Ok("S")
+    | Ok("S"), Ok("S"), Ok("M"), Ok("M")
+    | Ok("M"), Ok("S"), Ok("S"), Ok("M")
+    | Ok("S"), Ok("M"), Ok("M"), Ok("S")
+    -> count + 1
+    _, _, _, _ -> count
+  }
+}
+
 fn parse(input: String) {
   use dict, line, row <- list.index_fold(string.split(input, "\n"), dict.new())
   use dict, chr, col <- list.index_fold(string.to_graphemes(line), dict)

@@ -12,4 +12,5 @@ pub fn main() {
   io.debug(day_3.part_1())
   io.debug(day_3.part_2())
   io.debug(day_4.part_1())
+  io.debug(day_4.part_2())
 }
